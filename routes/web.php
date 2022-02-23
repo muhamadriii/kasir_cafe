@@ -17,4 +17,3 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('home');
 });
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati illo dicta facilis suscipit, voluptas numquam, tempore ducimus harum perferendis debitis, non consequuntur et explicabo eaque? Maiores quasi incidunt rem non.
