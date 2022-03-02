@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,6 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+route::get('destroy', [AdminController::class,'destroy']);
 Route::resource('menu', MenuController::class);
 Route::resource('admin', AdminController::class);

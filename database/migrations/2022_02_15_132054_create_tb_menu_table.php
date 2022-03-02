@@ -18,7 +18,7 @@ class CreateTbMenuTable extends Migration
             $table->string('nama_menu');
             $table->integer('harga');
             $table->string('deskripsi');
-            $table->integer('ketersediaan');
+            $table->integer('ketersediaan')->unsigned();
             $table->timestamps();
         });
     }

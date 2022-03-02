@@ -44,8 +44,14 @@
                           <td>{{ $u->password }}</td>
                           <td>{{ $u->role }}</td>
                           <td>
+                            <button class=".btn-lg btn-primary">
                               <a href="{{ route('admin.edit', $u->id) }}">edit</a>
-                              <a href="{{ route('admin.destroy', $u->id) }}">hapus</a>
+                            </button>
+                            <form action="{{ route('admin.destroy', $u->id) }}" method="post">
+                              @csrf @method('DELETE')
+                             <button class=".btn-lg btn-danger"> hapus  </button>                           
+                            </form>
+                            
                           </td>
                         </tr>
                         @endforeach

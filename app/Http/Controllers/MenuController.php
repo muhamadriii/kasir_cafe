@@ -17,7 +17,7 @@ class MenuController extends Controller
     public function index()
     {
         $data = Menu::get();
-        return view('menu.index', ['data' => $data]);
+        return view('manager.menu.index', ['data' => $data]);
     }
 
     /**
@@ -27,7 +27,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('menu.create');
+        return view('manager.menu.create');
     }
 
     /**
@@ -39,9 +39,9 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        menu::create($input);
+        Menu::create($input);
 
-        return redirect()->route('menu.index');
+        return redirect()->route('manager.menu.index');
 
     }
 
@@ -53,7 +53,7 @@ class MenuController extends Controller
      */
     public function show(menu $menu)
     {
-        return view('menu.show', ['data' => $menu]);
+        return view('manager.menu.show', ['data' => $menu]);
     }
 
     /**
@@ -64,7 +64,7 @@ class MenuController extends Controller
      */
     public function edit(menu $menu)
     {
-        return view('menu.edit', ['data' => $menu]);
+        return view('manager.menu.edit', ['data' => $menu]);
     }
 
     /**
@@ -79,7 +79,7 @@ class MenuController extends Controller
         $input= $request->all();
         $menu->update($input);
 
-        return redirect()->route('menu.index');
+        return redirect()->route('manager.menu.index');
     }
 
     /**
@@ -92,7 +92,7 @@ class MenuController extends Controller
     {
         $menu->delete();
 
-        return redirect()->route('menu.index');
+        return redirect()->route('manager.menu.index');
     }
 
     // public function export()
