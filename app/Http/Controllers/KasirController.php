@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\transaksi;
+use App\Models\Menu;
+use App\Models\Transaksi;
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 
 class KasirController extends Controller
@@ -14,8 +17,11 @@ class KasirController extends Controller
      */
     public function index()
     {
-        $data = transaksi::get();
-        return view('pages.category.index', ['data' => $data]);
+        $data = Menu::all();
+        return view('kasir.index', compact('data'))
+                ->with('i',(request()->input('page',1) - 1)*7);
+            
+
     }
 
     /**
@@ -25,7 +31,8 @@ class KasirController extends Controller
      */
     public function create()
     {
-        //
+        $data  = Menu::all();
+        return view('kasir.create', compact('data'));
     }
 
     /**
@@ -36,7 +43,37 @@ class KasirController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $timezone = 'Asia/Jakarta';
+        $date = new DateTime('now',new DateTimeZone($timezone));
+        $tanggal = $date->format('y-m-d');
+
+        $menu = Menu::whereNamaMenu($request->nama_menu)->first();
+        $request->validate([
+            'nama_pelanggan'=> 'required',
+            'nama_menu'=> 'required',
+            'jumlah'=> 'required',
+            'nama_pegawai'=> 'required',
+        ]);
+        if($menu->ketersediaan < $request->jumlah){
+            return back()->with('Kureng','Maaf '.$request->nama_menu.' beak');
+        }else{
+        Transaksi::create([
+            'nama_pelanggan' => $request->nama_pelanggan,
+            'nama_menu' => $request->nama_menu,
+            'jumlah' => $request->jumlah,
+            'total_harga' => $request->jumlah * $menu->harga,
+            'nama_pegawai' => $request->nama_pegawai,
+            'tanggal'=> $tanggal,
+        ]);
+        $menu->update([
+            'ketersediaan' => $menu->ketersediaan - $request->jumlah,
+        ]);
+
+        return redirect()->route('kasir.index')
+                    ->with('success','Berhasil');
+        }
+
     }
 
     /**

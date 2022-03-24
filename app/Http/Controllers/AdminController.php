@@ -116,6 +116,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
+        return $id;
         $data= User::find($id);
         $delete= $data->delete();
         if($delete){

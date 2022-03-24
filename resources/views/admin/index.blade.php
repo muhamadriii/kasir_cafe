@@ -3,6 +3,9 @@
 @section('name')
   <div>Muhamad Riandi</div>
 @endsection
+@section('header')
+  <div>Admin</div>
+@endsection
 
 @section('content')
 
@@ -44,15 +47,25 @@
                           <td>{{ $u->password }}</td>
                           <td>{{ $u->role }}</td>
                           <td>
-                            <button class=".btn-lg btn-primary">
-                              <a href="{{ route('admin.edit', $u->id) }}">edit</a>
-                            </button>
-                            <form action="{{ route('admin.destroy', $u->id) }}" method="post">
-                              @csrf @method('DELETE')
-                             <button class=".btn-lg btn-danger"> hapus  </button>                           
-                            </form>
-                            
-                          </td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">Action</button>
+                                <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
+                                    data-toggle="dropdown" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu" role="menu" style="">
+                                    <a class="dropdown-item"
+                                        href="{{ route('admin.edit', $u->id) }}">Edit</a>
+
+                                    <form action="{{ route('admin.destroy', $u->id) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="dropdown-item">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
                         </tr>
                         @endforeach
                       </tbody>

@@ -20,6 +20,7 @@ class CreateTbTransaksiTable extends Migration
             $table->integer('jumlah');
             $table->integer('total_harga');
             $table->string('nama_pegawai');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

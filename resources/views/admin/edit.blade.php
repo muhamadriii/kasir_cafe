@@ -23,7 +23,7 @@
                   <div class="form-group">
                     <label for="role">Role</label>
                     <select name="role" id="role" class="form-control">
-                      <option value="">{{$User->role}}</option>
+                      <option >PILIH ROLE!</option>
                       <option value="admin">Admin</option>
                       <option value="manager">Manager</option>
                       <option value="kasir">Kasir</option>
