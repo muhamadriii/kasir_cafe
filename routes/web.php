@@ -6,6 +6,7 @@ use App\Http\Controllers\KasirController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // manager
 Route::resource('menu', ManagerController::class);
@@ -30,3 +31,17 @@ Route::resource('admin', AdminController::class);
 
 // kasir
 Route::resource('kasir', KasirController::class);
+
+Auth::routes(['register' => false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+Route::group(['middleware' => ['auth']], function () {
+   
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

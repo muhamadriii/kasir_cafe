@@ -54,7 +54,7 @@
                             alt="User Image"> --}}
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Muhamad Andy</a>
+                        <a href="https://github.com/muhamadriii" class="d-block">Muhamad Andy</a>
                     </div>
                 </div>
 
